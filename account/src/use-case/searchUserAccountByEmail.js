@@ -4,9 +4,9 @@ const searchUserAccountByEmailUseCase = (email) => {
     const userByEmail = usersArray.filter((user) => user.email === email)
    
     if (userByEmail.length > 0) {
-        return userByEmail;}
+        return userByEmail}
     else {
-        return "E-mail não cadastrado"}
+        return false}
 };
 
 export {searchUserAccountByEmailUseCase};

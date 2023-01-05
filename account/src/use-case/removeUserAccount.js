@@ -3,11 +3,12 @@ import {searchUserAccountByEmailUseCase} from "./searchUserAccountByEmail.js";
 
 const removeUserUseCase = (email) => {
     const userByEmail = searchUserAccountByEmailUseCase(email);
-    const userByEmailIndex = userByEmail[0].id - 1;
-    if (userByEmail == "E-mail não cadastrado"){return userByEmail}
+    
+    if (userByEmail === false){return false}
     else {
-        usersArray.splice(userByEmailIndex, 1)
-        return "Usuário Removido"
+        const userByEmailIndex = userByEmail[0].id - 1;
+        usersArray.splice(userByEmailIndex, 1);
+        return true 
     }
     
 };
