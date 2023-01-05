@@ -4,16 +4,7 @@ const usersArray = [
     name: 'João Silva',
     email: 'joaosilva@email.com',
     password: '123456',
-    createdDate: '2023-01-01',
-    address: {
-        logradouro: 'rua seis',
-        numero: '150',
-        complemento: '',
-        bairro: 'centro',
-        cep: '08450-000',
-        cidade: 'Curitiba',
-        uf: 'PR'
-    }
+    createdDate: '2023-01-01'
     },
     {
         id: 2,
@@ -81,6 +72,7 @@ const usersArray = [
             uf: 'SP'
         }
       },
+
 
     ];
 
