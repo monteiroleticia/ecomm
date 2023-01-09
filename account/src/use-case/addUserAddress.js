@@ -3,9 +3,9 @@ import {searchUserAccountByEmailUseCase} from "./searchUserAccountByEmail.js";
 
 const addUserAddressUseCase = (email, logradouro, numero, complemento, bairro, cep, cidade, uf) => {
     const userByEmail = searchUserAccountByEmailUseCase(email);  
-    if (userByEmail === false){return false}
+    if (!userByEmail){return false}
     else {
-        const userIndex = userByEmail[0].id - 1;
+        const userIndex = usersArray.findIndex(user => user.email === email);
         usersArray[userIndex].address = {
             logradouro,
             numero,

@@ -1,4 +1,4 @@
-import {createUserUseCase} from "../src/use-case/";
+import {createUserUseCase} from "../src/use-case/createUserAccount.js";
 import {usersArray} from "../src/mockUsers.js";
 
 console.log(usersArray);
