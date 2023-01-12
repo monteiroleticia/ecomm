@@ -75,7 +75,7 @@ db.products.insertMany([
   },
     {
     name: 'Galaxy S22 Ultra',
-    description: 'Smartphone Samsung Galaxy S22 Ultra 256GB 5G com caneta S PEN - Preto, Câmera Tripla 108MP + Selfie 40MP, RAM 12GB, Tela 6.8\', 
+    description: 'Smartphone Samsung Galaxy S22 Ultra 256GB 5G com caneta S PEN - Preto, Câmera Tripla 108MP + Selfie 40MP, RAM 12GB, Tela 6.8', 
     slug: 'celular-galaxy-22-ultra',
     price: 8549.10,
     quantity: 5,
