@@ -1,0 +1,21 @@
+use('ecomm-product');
+
+db.products.aggregate([
+   {
+   $lookup:
+     {
+       from: 'categories',
+       localField: 'category',
+       foreignField: 'nome',
+       as: 'category'
+     }
+    },
+    {
+      $replaceRoot: { newRoot: { $mergeObjects: [ { $arrayElemAt: [ '$category', 0 ] }, '$$ROOT' ] } }
+    },
+    {
+        $match: {
+            'status': 'ATIVA'
+        }
+    }
+])
