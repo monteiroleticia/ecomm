@@ -1,0 +1,4 @@
+use('ecomm-product');
+
+db.products.find({price: {$gte: 1000, $lte: 2000}},
+{name: 1, price: 1, _id: 1});

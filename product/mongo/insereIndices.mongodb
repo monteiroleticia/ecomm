@@ -1,0 +1,5 @@
+use('ecomm-product')
+
+db.products.createIndex({category: 1});
+db.products.createIndex({price: 1});
+db.products.createIndex({quantity: 1});
