@@ -1,0 +1,53 @@
+use ('ecomm-account');
+
+db.userAccounts.insertMany([
+    {
+        name: 'Aparecida Ribeiro',
+        email: 'aparecidaribeiro@email.com',
+        password: '123456',
+        createdDate: new ISODate(),
+        CPF: 45113014095,
+        phone: 11944238023,
+        address: {
+            street: 'rua Benedito de Gusmão Barbosa',
+            number: '701',
+            complement: 'Casa 2',
+            postalCode: 57081270,
+            city: 'Maceió',
+            state: 'AL' 
+        }
+    }, 
+    {
+        name: 'Rebeca Mendes',
+        email: 'rebeca.mendes@email.com',
+        password: 'senha1234',
+        createdDate: new ISODate(),
+        CPF: 26499527335,
+        phone: 96988863763,
+        address: {
+            street: 'Alameda C',
+            number: '827',
+            complement: '98A',
+            postalCode: 68928301,
+            city: 'Santana',
+            state: 'AP' 
+        }
+    },
+     {
+        name: 'Sebastião Alves',
+        email: 'seba.alves@email.com',
+        password: '1234senha',
+        createdDate: new ISODate(),
+        CPF: 17460619876,
+        phone: 96981315765,
+        address: {
+            street: 'rodovia Juscelino Kubitschek',
+            number: '16660',
+            complement: 'apartamento 48',
+            zipCode: 68908971,
+            city: 'Macapá',
+            state: 'AP' 
+        }
+    },
+    
+]);
