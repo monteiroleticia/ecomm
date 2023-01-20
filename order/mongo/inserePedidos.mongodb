@@ -1,10 +1,12 @@
 use('ecomm-order');
 
+db.dropDatabase();
+
 db.orders.insertMany([
     {
         orderDate: new ISODate(),
         client: { 
-            id: ObjectID('63c82465d7d4e8ca57b9c593'), 
+            id: ObjectId('63c82465d7d4e8ca57b9c593'), 
             name: 'Aparecida Ribeiro'
             },
         deliveryAddress: {
@@ -17,16 +19,16 @@ db.orders.insertMany([
         },
         items: [
             {
-                productName: 'Notebook Samsung',
-                quantity: '1',
+                name: 'Notebook Samsung',
+                quantity: 1,
                 fullPrice: NumberDecimal('3523.00'),
                 discount: 10,
             },
             {
-                productName: 'Clean Architecture',
-                quantity: '1',
+                name: 'Clean Architecture',
+                quantity: 2,
                 fullPrice: NumberDecimal('102.00'),
-                discount: 0,
+                discount: 20,
             },
         ]
     },
@@ -46,8 +48,8 @@ db.orders.insertMany([
         },
         items: [
             {
-                productName: 'Monitor Dell 27',
-                quantity: '1',
+                name: 'Monitor Dell 27',
+                quantity: 1,
                 fullPrice: NumberDecimal('1889.00'),
                 discount: 13,
             }
