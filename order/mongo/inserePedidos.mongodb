@@ -1,7 +1,5 @@
 use('ecomm-order');
 
-db.dropDatabase();
-
 db.orders.insertMany([
     {
         orderDate: new ISODate(),
