@@ -6,13 +6,13 @@ db.userAccounts.insertMany([
         email: 'aparecidaribeiro@email.com',
         password: '$2y$05$XABfCl67r3.Ffpj6wACuheyk1j6hlhDOecc758QxxEbYaxwu6wqoW',
         createdDate: new ISODate(),
-        CPF: 45113014095,
-        phone: 11944238023,
+        CPF: '45113014095',
+        phone: '11944238023',
         address: {
             street: 'rua Benedito de Gusmão Barbosa',
             number: '701',
             complement: 'Casa 2',
-            zipCode: 57081270,
+            zipCode: '57081270',
             city: 'Maceió',
             state: 'AL' 
         }
@@ -22,13 +22,13 @@ db.userAccounts.insertMany([
         email: 'rebeca.mendes@email.com',
         password: '$2y$05$fQFQ82q4epZ9f/1kKRVkEOGpwYMyQ37WD9zNwle6teuPE39Dzg2FC',
         createdDate: new ISODate(),
-        CPF: 26499527335,
-        phone: 96988863763,
+        CPF: '26499527335',
+        phone: '96988863763',
         address: {
             street: 'Alameda C',
             number: '827',
             complement: '98A',
-            zipCode: 68928301,
+            zipCode: '68928301',
             city: 'Santana',
             state: 'AP' 
         }
@@ -38,13 +38,13 @@ db.userAccounts.insertMany([
         email: 'seba.alves@email.com',
         password: '$2y$10$4.c6T8zxT5nmSMkB8/JTvO4r5fnIKFOrHoBosKJ4tBu6tWsJVOy3.',
         createdDate: new ISODate(),
-        CPF: 17460619876,
-        phone: 96981315765,
+        CPF: '17460619876',
+        phone: '96981315765',
         address: {
             street: 'rodovia Juscelino Kubitschek',
             number: '16660',
             complement: 'apartamento 48',
-            zipCode: 68908971,
+            zipCode: '68908971',
             city: 'Macapá',
             state: 'AP' 
         }
