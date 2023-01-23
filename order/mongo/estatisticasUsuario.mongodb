@@ -1,0 +1,22 @@
+use('ecomm-order');
+
+db.orders.aggregate([
+    {$match: {'client.id': ObjectId('63c82465d7d4e8ca57b9c593')}},
+    {$unwind: '$items'},
+    {$addFields: {discountItem: {$round: [
+        {$sum: 
+            {$multiply:
+                ['$items.quantity', '$items.fullPrice', {$divide:
+                    ['$items.discount', 100]}]}},
+         2]} }},
+   
+    {$group: { 
+        _id: 0,
+        quantityTotal: {$sum: '$items.quantity'},
+        fullPriceTotal: {$sum: {$multiply: 
+            ['$items.quantity', '$items.fullPrice']}},
+        discountTotal: {$sum: '$discountItem'}
+    }   
+     }
+     
+])

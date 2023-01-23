@@ -1,5 +1,6 @@
 use('ecomm-product');
 
 db.products.updateMany({category: 'LIVROS'}, 
-    {$set: {quantidade: 0}
+    {$set: {quantity: 0}
 });
+

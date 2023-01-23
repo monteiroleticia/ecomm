@@ -1,0 +1,56 @@
+use('ecomm-order');
+
+db.orders.insertMany([
+    {
+        orderDate: new ISODate(),
+        client: { 
+            id: ObjectId('63c82465d7d4e8ca57b9c593'), 
+            name: 'Aparecida Ribeiro'
+            },
+        deliveryAddress: {
+            street: 'rua Benedito de Gusmão Barbosa',
+            number: '701',
+            complement: 'Casa 2',
+            postalCode: 57081270,
+            city: 'Maceió',
+            state: 'AL' 
+        },
+        items: [
+            {
+                name: 'Notebook Samsung',
+                quantity: 1,
+                fullPrice: NumberDecimal('3523.00'),
+                discount: 10,
+            },
+            {
+                name: 'Clean Architecture',
+                quantity: 2,
+                fullPrice: NumberDecimal('102.00'),
+                discount: 20,
+            },
+        ]
+    },
+     {
+        orderDate: new ISODate(),
+        client: { 
+            id: ObjectId('63c82465d7d4e8ca57b9c595'),
+            name: 'Sebastião Alves'
+            },
+        deliveryAddress: {
+            street: 'rodovia Juscelino Kubitschek',
+            number: '16660',
+            complement: 'apartamento 48',
+            zipCode: '68908971',
+            city: 'Macapá',
+            state: 'AP' 
+        },
+        items: [
+            {
+                name: 'Monitor Dell 27',
+                quantity: 1,
+                fullPrice: NumberDecimal('1889.00'),
+                discount: 13,
+            }
+        ]
+    }
+])

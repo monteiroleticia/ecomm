@@ -1,0 +1,5 @@
+use('ecomm-product');
+
+db.products.aggregate([
+    { $addFields: {price: {$toDecimal: '$price'}}}
+])
