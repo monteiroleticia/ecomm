@@ -1,0 +1,51 @@
+openapi: 3.0.3
+info:
+  title: ECOMM | Product API
+  description: Ecomm is an e-commerce project created during the Level Up - PagoNxt by Alura. This API controls the products section for the e-commerce. 
+  version: 0.0.1
+  termsOfService: https://mockapi.io
+  contact:
+    name: Leticia Monteiro
+    email: contato@example.com
+    url: https://mockapi.io
+  license:
+    name: "Lincença: GPLv3"
+    url: https://www.gnu.org/licenses/gpl-3.0.html
+externalDocs:
+  description: Documentação burocrática
+  url: https://mockapi.io
+servers:
+- url: https://6096015d116f3f00174b29ba.mockapi.io/
+  description: API de Teste
+  
+paths:
+  /categories:
+    get:
+      summary: List Categories
+      description: List id, name and status for all categories
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
+        404: 
+            description: Not Found
+            content: 
+              application/json:
+                example: No category found
+          
+components:
+  schemas:
+    Category:
+      type: object
+      properties:
+        _id:
+          type: object
+        nome:
+          type: string
+        status:
+          type: string
