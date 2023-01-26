@@ -19,7 +19,7 @@ servers:
   description: API de Teste
   
 paths:
-  /categories:
+  /api/categories:
     get:
       summary: List Categories
       description: List id, name and status for all categories
@@ -36,7 +36,32 @@ paths:
             description: Not Found
             content: 
               application/json:
-                example: No category found
+                example: Nenhuma categoria encontrada 
+  
+  /api/admin/categories:
+    post:
+      summary: Add Category
+      description: Create a new category
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: 
+                nome:
+                  type: string
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/Category"
+        424: 
+          description: Failed Dependency
+          content: 
+            application/json:
+              example: Não foi possível criar uma nova categoria
           
 components:
   schemas:
