@@ -42,6 +42,8 @@ paths:
     post:
       summary: Add Category
       description: Create a new category, only for admin. 
+      security: 
+      - auth: []
       requestBody:
         content:
           application/json:
@@ -102,6 +104,8 @@ paths:
     put:
       summary: Update a Category
       description: Update a Category receiving all category data, only for admin. 
+      security: 
+      - auth: []
       requestBody:
         content:
           application/json:
@@ -132,6 +136,8 @@ paths:
     delete: 
       summary: Delete a Category
       description: Delete a Category, only for admin.
+      security: 
+      - auth: []
       requestBody:
         content:
           application/json:
@@ -161,6 +167,8 @@ paths:
     patch:
       summary: Activate a Category
       description: Change a category status to Active, only for admin.
+      security: 
+      - auth: []
       responses:
         200:
           description: OK
@@ -182,7 +190,7 @@ paths:
           content:
             application/json:
               example: Você não tem autorização para realizar essa ação!  
-  
+
 components:
   schemas:
     Category:
@@ -197,3 +205,8 @@ components:
           type: string
         status:
           type: string
+  securitySchemes:
+    auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
