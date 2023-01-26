@@ -35,12 +35,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Category'
-        404: 
-            description: Not Found
-            content: 
-              application/json:
-                example: Nenhuma categoria encontrada 
-  
+
   /api/admin/categories:
     post:
       tags:
@@ -69,16 +64,19 @@ paths:
           content: 
             application/json:
               example: Não foi possível criar uma nova categoria
+        401: 
+          description: Unauthorized 
+          content:
+            application/json:
+              example: Você não tem autorização para realizar essa ação!
               
-  /api/categories/{_id}:
+  /api/categories/{id}:
     parameters: 
-    - name: _id
+    - name: id
       in: path
       schema:
-        type: object
-        properties:
-              $oid:
-                type: string
+        type: string
+        format: uuid
       required: true
     get: 
       tags:
@@ -98,15 +96,13 @@ paths:
             application/json:
               example: Categoria não encontrada!
 
-  /api/admin/categories/{_id}:
+  /api/admin/categories/{id}:
     parameters: 
-      - name: _id
+      - name: id
         in: path
         schema:
-          type: object
-          properties:
-                $oid:
-                  type: string
+          type: string
+          format: uuid
         required: true
     put:
       tags:
@@ -132,11 +128,6 @@ paths:
           content:
             application/json:
               example: Categoria não encontrada!
-        400:
-          description: Bad Request
-          content:
-            application/json:
-              example: Não foi possível relizar a atualização!
         401: 
           description: Unauthorized 
           content:
@@ -149,14 +140,9 @@ paths:
       description: Delete a Category, only for admin.
       security: 
       - auth: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-                $ref: '#/components/schemas/Category'
       responses:
-        200:
-          description: OK
+        204:
+          description: No Content
           content:
             application/json:
               example: Categoria Deletada! 
@@ -165,11 +151,6 @@ paths:
           content:
             application/json:
               example: Categoria não encontrada!
-        400:
-          description: Bad Request
-          content:
-            application/json:
-              example: Não foi possível deletar a categoria!
         401: 
           description: Unauthorized 
           content:
@@ -193,11 +174,6 @@ paths:
           content:
             application/json:
               example: Categoria não encontrada!
-        400:
-          description: Bad Request
-          content:
-            application/json:
-              example: Não foi possível ativar a categoria!
         401: 
           description: Unauthorized 
           content:
@@ -219,22 +195,15 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Product'
-        404: 
-            description: Not Found
-            content: 
-              application/json:
-                example: Nenhum produto cadastrado 
 
 components:
   schemas:
     Category:
       type: object
       properties:
-        _id:
-          type: object
-          properties:
-              $oid:
-                type: string
+        id:
+          type: string
+          format: uuid
         nome:
           type: string
         status:
@@ -243,11 +212,9 @@ components:
     Product:
       type: object 
       properties:
-        _id: 
-          type: object
-          properties: 
-            $oid:
-              type: string
+        id: 
+          type: string
+          format: uuid
         name:
           type: string
         description:
@@ -263,11 +230,8 @@ components:
           properties: 
             nome: 
               type: string
-            _id: 
-              type: object 
-              properties:
-                $oid:
-                  type: string
+            id: 
+              type: string
   securitySchemes:
     auth:
       type: http
