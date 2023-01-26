@@ -18,9 +18,12 @@ servers:
 - url: https://6096015d116f3f00174b29ba.mockapi.io/
   description: API de Teste
   
+
 paths:
   /api/categories:
     get:
+      tags:
+      - categories
       summary: List Categories
       description: List id, name and status for all categories
       responses:
@@ -40,6 +43,8 @@ paths:
   
   /api/admin/categories:
     post:
+      tags:
+      - categories
       summary: Add Category
       description: Create a new category, only for admin. 
       security: 
@@ -76,6 +81,8 @@ paths:
                 type: string
       required: true
     get: 
+      tags:
+      - categories
       summary: Fetch a Category
       description: Fetch a Category by ID
       responses:
@@ -102,6 +109,8 @@ paths:
                   type: string
         required: true
     put:
+      tags:
+      - categories
       summary: Update a Category
       description: Update a Category receiving all category data, only for admin. 
       security: 
@@ -134,6 +143,8 @@ paths:
             application/json:
               example: Você não tem autorização para realizar essa ação! 
     delete: 
+      tags:
+      - categories
       summary: Delete a Category
       description: Delete a Category, only for admin.
       security: 
@@ -165,6 +176,8 @@ paths:
             application/json:
               example: Você não tem autorização para realizar essa ação! 
     patch:
+      tags:
+      - categories
       summary: Activate a Category
       description: Change a category status to Active, only for admin.
       security: 
@@ -190,6 +203,27 @@ paths:
           content:
             application/json:
               example: Você não tem autorização para realizar essa ação!  
+  
+  /api/products:
+    get:
+      tags:
+      - products
+      summary: List Products
+      description: List all existing products 
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+        404: 
+            description: Not Found
+            content: 
+              application/json:
+                example: Nenhum produto cadastrado 
 
 components:
   schemas:
@@ -205,6 +239,35 @@ components:
           type: string
         status:
           type: string
+
+    Product:
+      type: object 
+      properties:
+        _id: 
+          type: object
+          properties: 
+            $oid:
+              type: string
+        name:
+          type: string
+        description:
+          type: string
+        slug:
+          type: string
+        price: 
+          type: number
+        quantity:
+          type: number
+        category: 
+          type: object
+          properties: 
+            nome: 
+              type: string
+            _id: 
+              type: object 
+              properties:
+                $oid:
+                  type: string
   securitySchemes:
     auth:
       type: http
