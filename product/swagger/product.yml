@@ -43,7 +43,7 @@ paths:
       summary: Add Category
       description: Create a new category, only for admin. 
       security: 
-      - auth: []
+      - auth: [admin]
       requestBody:
         content:
           application/json:
@@ -110,7 +110,7 @@ paths:
       summary: Update a Category
       description: Update a Category receiving all category data, only for admin. 
       security: 
-      - auth: []
+      - auth: [admin]
       requestBody:
         content:
           application/json:
@@ -139,7 +139,7 @@ paths:
       summary: Delete a Category
       description: Delete a Category, only for admin.
       security: 
-      - auth: []
+      - auth: [admin]
       responses:
         204:
           description: No Content
@@ -162,7 +162,7 @@ paths:
       summary: Activate a Category
       description: Change a category status to Active, only for admin.
       security: 
-      - auth: []
+      - auth: [admin]
       responses:
         200:
           description: OK
@@ -203,7 +203,7 @@ paths:
       summary: Add Product
       description: Create a new product, only for admin. 
       security:
-      - auth: []
+      - auth: [admin]
       requestBody:
         content:
           application/json:
@@ -267,7 +267,7 @@ paths:
       summary: Update a Product
       description: Change products informations, receiving all product data, only for admin. 
       security: 
-      - auth: []
+      - auth: [admin]
       requestBody:
         content:
           application/json:
@@ -296,7 +296,7 @@ paths:
       summary: Delete a Product
       description: Delete a Product, only for admin.
       security: 
-      - auth: []
+      - auth: [admin]
       responses:
         204:
           description: No Content
