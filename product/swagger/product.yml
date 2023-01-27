@@ -196,6 +196,124 @@ paths:
                 items:
                   $ref: '#/components/schemas/Product'
 
+  /api/admin/products:
+    post: 
+      tags:
+      - products
+      summary: Add Product
+      description: Create a new product, only for admin. 
+      security:
+      - auth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Product'
+        424: 
+          description: Failed Dependency
+          content: 
+            application/json:
+              example: Não foi possível adicionar um novo produto!
+        401: 
+          description: Unauthorized 
+          content:
+            application/json:
+              example: Você não tem autorização para realizar essa ação!
+
+  /api/products/{id}:
+    parameters:
+    - name: id 
+      in: path 
+      schema:
+        type: string
+        format: uuid
+      required: true
+    get: 
+      tags:
+      - products 
+      summary: Fetch a Product
+      description: Fetch a Producty by ID 
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              example: Produto não encontrado!
+
+  /api/admin/products/{id}:
+    parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+          format: uuid
+        required: true
+    put:
+      tags:
+      - products
+      summary: Update a Product
+      description: Change products informations, receiving all product data, only for admin. 
+      security: 
+      - auth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+                $ref: '#/components/schemas/Product'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              example: Produto não encontrado!
+        401: 
+          description: Unauthorized 
+          content:
+            application/json:
+              example: Você não tem autorização para realizar essa ação! 
+    delete: 
+      tags:
+      - products
+      summary: Delete a Product
+      description: Delete a Product, only for admin.
+      security: 
+      - auth: []
+      responses:
+        204:
+          description: No Content
+          content:
+            application/json:
+              example: Produto Deletado! 
+        404:
+          description: Not Found
+          content:
+            application/json:
+              example: Produto não encontrado!
+        401: 
+          description: Unauthorized 
+          content:
+            application/json:
+              example: Você não tem autorização para realizar essa ação! 
+
 components:
   schemas:
     Category:
