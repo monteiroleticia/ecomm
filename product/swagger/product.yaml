@@ -351,7 +351,6 @@ paths:
                 items:
                   $ref: '#/components/schemas/Product'
 
-
 components:
   schemas:
     Category:
@@ -388,6 +387,7 @@ components:
               type: string
             id: 
               type: string
+              
   securitySchemes:
     auth:
       type: http
