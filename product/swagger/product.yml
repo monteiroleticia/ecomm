@@ -18,7 +18,6 @@ servers:
 - url: https://6096015d116f3f00174b29ba.mockapi.io/
   description: API de Teste
   
-
 paths:
   /api/categories:
     get:
@@ -313,6 +312,45 @@ paths:
           content:
             application/json:
               example: Você não tem autorização para realizar essa ação! 
+
+  /api/products/filter:
+    get:
+      tags:
+      - products
+      summary: Filter Products
+      description: Filter Products by price range, category or quantity. 
+      parameters: 
+      - name: priceRange
+        in: query
+        required: false 
+        schema: 
+          type: object
+          properties:
+            minPrice: 
+                type: number
+            maxPrice:
+                type: number
+      - name: category 
+        in: query
+        required: false 
+        schema: 
+          type: string 
+          enum: [INFORMÁTICA, BELEZA, CELULARES, MÓVEIS, LUXO, ESPORTE, AUTOMATIVA, LIVROS]
+      - name: quantity
+        in: query
+        required: false
+        schema:
+          type: number
+      responses:
+        200: 
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+
 
 components:
   schemas:
