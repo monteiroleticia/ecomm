@@ -4,7 +4,7 @@ import CategoryController from '../controllers/categoriesController.js';
 const router = express.Router();
 
 router
-    .get('/categories', CategoryController.listCategories)
-    .post('/admin/categories', CategoryController.addCategory)
+    .get('/api/categories', CategoryController.listCategories)
+    .post('/api/admin/categories', CategoryController.addCategory)
 
 export default router;
