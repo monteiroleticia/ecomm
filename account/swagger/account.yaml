@@ -19,12 +19,15 @@ servers:
   description: API de Teste
 
 paths:
-  /api/accounts: 
+  
+  /api/admin/accounts:
     get:
       tags:
       - accounts
       summary: List Accounts
-      description: List all existing accounts. 
+      description: List all existing accounts.
+      security:
+      - auth: [] 
       responses: 
         200: 
          description: OK
@@ -35,7 +38,6 @@ paths:
               items:
                 $ref: '#/components/schemas/Account'
 
-  /api/admin/accounts:
     post: 
       tags:
       - accounts
@@ -66,19 +68,22 @@ paths:
             application/json:
               example: Você não tem autorização para realizar essa ação! 
 
-  /api/accounts/{id}:
+  
+  /api/admin/accounts/{id}:
     parameters:
-    - name: id 
-      in: path 
-      schema:
-        type: string
-        format: uuid
-      required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+          format: uuid
+        required: true
     get: 
       tags:
       - accounts
       summary: Fetch an Account
       description: Fetch an Account by ID 
+      security: 
+      - auth: []
       responses:
         200:
           description: OK
@@ -91,15 +96,7 @@ paths:
           content:
             application/json:
               example: Usuário não encontrado!
-  
-  /api/admin/accounts/{id}:
-    parameters:
-      - name: id
-        in: path
-        schema:
-          type: string
-          format: uuid
-        required: true
+              
     put:
       tags:
       - accounts
