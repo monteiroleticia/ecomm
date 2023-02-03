@@ -7,5 +7,7 @@ router
     .get('/api/categories', CategoryController.listCategories)
     .post('/api/admin/categories', CategoryController.addCategory)
     .get('/api/categories/:id', CategoryController.fetchCategoryById)
+    .put('/api/admin/categories/:id', CategoryController.updateCategory)
+    .delete('/api/admin/categories/:id', CategoryController.deleteCategory)
 
 export default router;

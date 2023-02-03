@@ -22,7 +22,7 @@ class CategoryController {
 
     static fetchCategoryById = (req, res) => {
         const id = req.params.id;
-        
+
         categories.findById(id, (err, category) => {
             if(err) {
                 res.status(500).send({message: `${err.message} - Id da categoria não localizada.`})
@@ -30,6 +30,31 @@ class CategoryController {
                 res.status(200).json(category)
               }
         })
+    }
+
+    static updateCategory = (req, res) => {
+        const id = req.params.id;
+
+        categories.findByIdAndUpdate(id, {$set: req.body}, (err) => {
+            if(!err) {
+              res.status(200).send({message: 'Categoria atualizada com sucesso'})
+            } else {
+              res.status(500).send({message: err.message})
+            }
+          })
+
+    }
+
+    static deleteCategory = (req, res) => {
+        const id = req.params.id;
+
+        categories.findByIdAndDelete(id, (err) => {
+            if(!err) {
+              res.status(200).send({message: 'Categoria removida'})
+            } else {
+              res.status(500).send({message: err.message})
+            }
+          })
     }
 }
 
