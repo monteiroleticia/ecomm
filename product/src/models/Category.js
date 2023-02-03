@@ -3,8 +3,13 @@ import mongoose from 'mongoose';
 const categorySchema = new mongoose.Schema(
     {
         id: {type: String},
-        nome: {type: String, required: true},
-        status: {type: String},
+        nome: {
+                type: String,  
+                required: true,
+                minLength: 3, 
+                match: /^[A-Za-z][A-Za-z0-9 -]*$/ 
+        },
+        status: {type: String}
     }
 );
 
