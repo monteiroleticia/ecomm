@@ -18,7 +18,18 @@ class CategoryController {
                 res.status(201).send(category.toJSON())
             }
         })
+    }
 
+    static fetchCategoryById = (req, res) => {
+        const id = req.params.id;
+        
+        categories.findById(id, (err, category) => {
+            if(err) {
+                res.status(500).send({message: `${err.message} - Id da categoria não localizada.`})
+              } else {
+                res.status(200).json(category)
+              }
+        })
     }
 }
 
