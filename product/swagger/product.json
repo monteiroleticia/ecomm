@@ -1,0 +1,646 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+      "title": "ECOMM | Product API",
+      "description": "Ecomm is an e-commerce project created during the Level Up - PagoNxt by Alura. This API controls the products section for the e-commerce.",
+      "version": "0.0.1",
+      "termsOfService": "https://mockapi.io",
+      "contact": {
+        "name": "Leticia Monteiro",
+        "email": "contato@example.com",
+        "url": "https://mockapi.io"
+      },
+      "license": {
+        "name": "Lincença: GPLv3",
+        "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+      }
+    },
+    "externalDocs": {
+      "description": "Documentação burocrática",
+      "url": "https://mockapi.io"
+    },
+    "servers": [
+      {
+        "url": "https://6096015d116f3f00174b29ba.mockapi.io/",
+        "description": "API de Teste"
+      }
+    ],
+    "paths": {
+      "/api/categories": {
+        "get": {
+          "tags": [
+            "categories"
+          ],
+          "summary": "List Categories",
+          "description": "List id, name and status for all categories",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Category"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/admin/categories": {
+        "post": {
+          "tags": [
+            "categories"
+          ],
+          "summary": "Add Category",
+          "description": "Create a new category, only for admin.",
+          "security": [
+            {
+              "auth": [
+                "admin"
+              ]
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "nome": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Created",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Category"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "content": {
+                "application/json": {
+                  "example": "Você não tem autorização para realizar essa ação!"
+                }
+              }
+            },
+            "424": {
+              "description": "Failed Dependency",
+              "content": {
+                "application/json": {
+                  "example": "Não foi possível criar uma nova categoria"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/categories/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true
+          }
+        ],
+        "get": {
+          "tags": [
+            "categories"
+          ],
+          "summary": "Fetch a Category",
+          "description": "Fetch a Category by ID",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Category"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/json": {
+                  "example": "Categoria não encontrada!"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/admin/categories/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true
+          }
+        ],
+        "put": {
+          "tags": [
+            "categories"
+          ],
+          "summary": "Update a Category",
+          "description": "Update a Category receiving all category data, only for admin.",
+          "security": [
+            {
+              "auth": [
+                "admin"
+              ]
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Category"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Category"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "content": {
+                "application/json": {
+                  "example": "Você não tem autorização para realizar essa ação!"
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/json": {
+                  "example": "Categoria não encontrada!"
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "categories"
+          ],
+          "summary": "Delete a Category",
+          "description": "Delete a Category, only for admin.",
+          "security": [
+            {
+              "auth": [
+                "admin"
+              ]
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "No Content",
+              "content": {
+                "application/json": {
+                  "example": "Categoria Deletada!"
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "content": {
+                "application/json": {
+                  "example": "Você não tem autorização para realizar essa ação!"
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/json": {
+                  "example": "Categoria não encontrada!"
+                }
+              }
+            }
+          }
+        },
+        "patch": {
+          "tags": [
+            "categories"
+          ],
+          "summary": "Activate a Category",
+          "description": "Change a category status to Active, only for admin.",
+          "security": [
+            {
+              "auth": [
+                "admin"
+              ]
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "example": "Categoria Ativada!"
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "content": {
+                "application/json": {
+                  "example": "Você não tem autorização para realizar essa ação!"
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/json": {
+                  "example": "Categoria não encontrada!"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/products": {
+        "get": {
+          "tags": [
+            "products"
+          ],
+          "summary": "List Products",
+          "description": "List all existing products",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Product"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/admin/products": {
+        "post": {
+          "tags": [
+            "products"
+          ],
+          "summary": "Add Product",
+          "description": "Create a new product, only for admin.",
+          "security": [
+            {
+              "auth": [
+                "admin"
+              ]
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Created",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Product"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "content": {
+                "application/json": {
+                  "example": "Você não tem autorização para realizar essa ação!"
+                }
+              }
+            },
+            "424": {
+              "description": "Failed Dependency",
+              "content": {
+                "application/json": {
+                  "example": "Não foi possível adicionar um novo produto!"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/products/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true
+          }
+        ],
+        "get": {
+          "tags": [
+            "products"
+          ],
+          "summary": "Fetch a Product",
+          "description": "Fetch a Producty by ID",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Product"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/json": {
+                  "example": "Produto não encontrado!"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/admin/products/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true
+          }
+        ],
+        "put": {
+          "tags": [
+            "products"
+          ],
+          "summary": "Update a Product",
+          "description": "Change products informations, receiving all product data, only for admin.",
+          "security": [
+            {
+              "auth": [
+                "admin"
+              ]
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Product"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "content": {
+                "application/json": {
+                  "example": "Você não tem autorização para realizar essa ação!"
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/json": {
+                  "example": "Produto não encontrado!"
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "products"
+          ],
+          "summary": "Delete a Product",
+          "description": "Delete a Product, only for admin.",
+          "security": [
+            {
+              "auth": [
+                "admin"
+              ]
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "No Content",
+              "content": {
+                "application/json": {
+                  "example": "Produto Deletado!"
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "content": {
+                "application/json": {
+                  "example": "Você não tem autorização para realizar essa ação!"
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/json": {
+                  "example": "Produto não encontrado!"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/products/filter": {
+        "get": {
+          "tags": [
+            "products"
+          ],
+          "summary": "Filter Products",
+          "description": "Filter Products by price range, category or quantity.",
+          "parameters": [
+            {
+              "name": "priceRange",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "minPrice": {
+                    "type": "number"
+                  },
+                  "maxPrice": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            {
+              "name": "category",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "INFORMÁTICA",
+                  "BELEZA",
+                  "CELULARES",
+                  "MÓVEIS",
+                  "LUXO",
+                  "ESPORTE",
+                  "AUTOMATIVA",
+                  "LIVROS"
+                ]
+              }
+            },
+            {
+              "name": "quantity",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "number"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Product"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "Category": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nome": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          }
+        },
+        "Product": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "slug": {
+              "type": "string"
+            },
+            "price": {
+              "type": "number"
+            },
+            "quantity": {
+              "type": "number"
+            },
+            "category": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string"
+                },
+                "id": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "securitySchemes": {
+        "auth": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        }
+      }
+    }
+  }
