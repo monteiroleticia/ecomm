@@ -9,5 +9,6 @@ router
     .get('/api/categories/:id', CategoryController.fetchCategoryById)
     .put('/api/admin/categories/:id', CategoryController.updateCategory)
     .delete('/api/admin/categories/:id', CategoryController.deleteCategory)
+    .patch('/api/admin/categories/:id', CategoryController.activateCategory)
 
 export default router;
