@@ -26,9 +26,9 @@ class CategoryController {
         categories.findById(id, (err, category) => {
             if(err) {
                 res.status(500).send({message: `${err.message} - Id da categoria não localizada.`})
-              } else {
+            } else {
                 res.status(200).json(category)
-              }
+            }
         })
     }
 
@@ -41,8 +41,7 @@ class CategoryController {
             } else {
               res.status(500).send({message: err.message})
             }
-          })
-
+        })
     }
 
     static deleteCategory = (req, res) => {
@@ -54,7 +53,7 @@ class CategoryController {
             } else {
               res.status(500).send({message: err.message})
             }
-          })
+        })
     }
 }
 
