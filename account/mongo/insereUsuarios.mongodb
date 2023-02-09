@@ -1,6 +1,6 @@
 use ('ecomm-account');
 
-db.userAccounts.insertMany([
+db.accounts.insertMany([
     {
         name: 'Aparecida Ribeiro',
         email: 'aparecidaribeiro@email.com',
