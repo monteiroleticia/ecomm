@@ -1,0 +1,300 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+      "title": "ECOMM | Account API",
+      "description": "Ecomm is an e-commerce project created during the Level Up - PagoNxt by Alura. This API controls the accounts section for the e-commerce.",
+      "version": "0.0.1",
+      "termsOfService": "https://mockapi.io",
+      "contact": {
+        "name": "Leticia Monteiro",
+        "email": "contato@example.com",
+        "url": "https://mockapi.io"
+      },
+      "license": {
+        "name": "Lincença: GPLv3",
+        "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+      }
+    },
+    "externalDocs": {
+      "description": "Documentação burocrática",
+      "url": "https://mockapi.io"
+    },
+    "servers": [
+      {
+        "url": "https://6096015d116f3f00174b29ba.mockapi.io/",
+        "description": "API de Teste"
+      }
+    ],
+    "paths": {
+      "/api/admin/accounts": {
+        "get": {
+          "tags": [
+            "accounts"
+          ],
+          "summary": "List Accounts",
+          "description": "List all existing accounts.",
+          "security": [
+            {
+              "auth": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Account"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "accounts"
+          ],
+          "summary": "Add Account",
+          "description": "Create a new account, only for admin.",
+          "security": [
+            {
+              "auth": []
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Account"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Created",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Account"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "content": {
+                "application/json": {
+                  "example": "Você não tem autorização para realizar essa ação!"
+                }
+              }
+            },
+            "424": {
+              "description": "Failed Dependency",
+              "content": {
+                "application/json": {
+                  "example": "Não foi possível adicionar um novo usuário!"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/admin/accounts/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true
+          }
+        ],
+        "get": {
+          "tags": [
+            "accounts"
+          ],
+          "summary": "Fetch an Account",
+          "description": "Fetch an Account by ID",
+          "security": [
+            {
+              "auth": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Account"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/json": {
+                  "example": "Usuário não encontrado!"
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "accounts"
+          ],
+          "summary": "Update an Account",
+          "description": "Change user informations, receiving all account data, only for admin.",
+          "security": [
+            {
+              "auth": []
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Account"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Account"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "content": {
+                "application/json": {
+                  "example": "Você não tem autorização para realizar essa ação!"
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/json": {
+                  "example": "Usuário não encontrado!"
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "accounts"
+          ],
+          "summary": "Delete an Account",
+          "description": "Delete an Account, only for admin.",
+          "security": [
+            {
+              "auth": []
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "No Content",
+              "content": {
+                "application/json": {
+                  "example": "Usuário Deletado!"
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "content": {
+                "application/json": {
+                  "example": "Você não tem autorização para realizar essa ação!"
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/json": {
+                  "example": "Usuário não encontrado!"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "Account": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string",
+              "format": "email"
+            },
+            "password": {
+              "type": "string",
+              "format": "password"
+            },
+            "CPF": {
+              "type": "string"
+            },
+            "phone": {
+              "type": "string"
+            },
+            "address": {
+              "type": "object",
+              "properties": {
+                "street": {
+                  "type": "string"
+                },
+                "number": {
+                  "type": "string"
+                },
+                "complement": {
+                  "type": "string"
+                },
+                "zipCode": {
+                  "type": "string"
+                },
+                "city": {
+                  "type": "string"
+                },
+                "state": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "securitySchemes": {
+        "auth": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        }
+      }
+    }
+  }
