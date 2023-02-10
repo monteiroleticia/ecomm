@@ -12,7 +12,7 @@ module.exports = {
       amount: {
         type: Sequelize.INTEGER
       },
-      cardHolder: {
+      cardholder: {
         type: Sequelize.STRING
       },
       cardNumber: {
