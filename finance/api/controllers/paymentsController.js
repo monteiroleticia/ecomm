@@ -5,7 +5,7 @@ const db = require('../models');
     static async submitPayment(req, res) {
       const payment = {...req.body, status: 'CRIADO'}
       try {
-        const {id, status} = await db.Payments.create(payment);
+        const {id, status} = await db.Payment.create(payment);
         return res.status(201).set('Location', `/payments/${id}`).json({id, status});
       } catch (error) {
         return res.status(500).json(error.message)
@@ -15,7 +15,7 @@ const db = require('../models');
     static async getPayment(req, res) {
       const {id} = req.params;
       try {
-        const payment = await db.Payments.findOne({
+        const payment = await db.Payment.findOne({
           where: {id: Number(id)},
           attributes: ['id', 'amount', 'cardholder', 'cardNumber', 'expDate', 'status', 'createdAt', 'updatedAt']
         })
@@ -28,10 +28,10 @@ const db = require('../models');
     static async updateStatus(req, res) {
       const {id} = req.params; 
       try {
-        const payment = await db.Payments.findOne( {where: {id: Number(id)}});
+        const payment = await db.Payment.findOne( {where: {id: Number(id)}});
         if (payment.status === 'CRIADO'){
-          await db.Payments.update(req.body, {where: {id: Number(id)}});
-          const updatedPayment = await db.Payments.findOne( {where: {id: Number(id)}});
+          await db.Payment.update(req.body, {where: {id: Number(id)}});
+          const updatedPayment = await db.Payment.findOne( {where: {id: Number(id)}});
          return res.status(200).json(updatedPayment)
         } else {
           return res.status(400).json('Não é possível realizar essa operação')
