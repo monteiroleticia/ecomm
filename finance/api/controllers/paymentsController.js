@@ -28,9 +28,14 @@ const db = require('../models');
     static async updateStatus(req, res) {
       const {id} = req.params; 
       try {
-        await db.Payments.update(req.body, {where: {id: Number(id)}});
         const payment = await db.Payments.findOne( {where: {id: Number(id)}});
-        return res.status(200).json(payment);
+        if (payment.status === 'CRIADO'){
+          await db.Payments.update(req.body, {where: {id: Number(id)}});
+          const updatedPayment = await db.Payments.findOne( {where: {id: Number(id)}});
+         return res.status(200).json(updatedPayment)
+        } else {
+          return res.status(400).json('Não é possível realizar essa operação')
+        }
       } catch (error) {
         return res.status(500).json(error.message);
     }}
