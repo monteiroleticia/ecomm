@@ -25,7 +25,7 @@ class ProductController {
 
         products.findById(id, (err, Product) => {
             if(err) {
-                res.status(500).send({message: `${err.message} - Id do produto não localizado.`})
+                res.status(404).send({message: `${err.message} - Id do produto não localizado.`})
             } else {
                 res.status(200).json(Product)
             }
