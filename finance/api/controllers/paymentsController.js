@@ -10,19 +10,19 @@ const db = require('../models');
           {     
             rel: "self",
             method: "GET",
-            href: `http://localhost:3002/admin/payments/${id}`
+            href: `http://localhost:3002/api/admin/payments/${id}`
           },
           {     
             rel: "confirmation",
             method: "PATCH",
             status: "CONFIRMADO",
-            href: `http://localhost:3002/admin/payments/${id}`
+            href: `http://localhost:3002/api/admin/payments/${id}`
           },
           {     
             rel: "cancellation",
             method: "PATCH",
             status: "CANCELADO",
-            href: `http://localhost:3002/admin/payments/${id}`
+            href: `http://localhost:3002/api/admin/payments/${id}`
           }];
         return res.status(201).set('Location', `/payments/${id}`).json({id, status, links});
       } catch (error) {
@@ -49,7 +49,7 @@ const db = require('../models');
         {     
           rel: "self",
           method: "GET",
-          href: `http://localhost:3002/admin/payments/${id}`
+          href: `http://localhost:3002/api/admin/payments/${id}`
         }
       ];
       try {
