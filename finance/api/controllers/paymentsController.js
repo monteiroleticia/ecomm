@@ -24,7 +24,7 @@ const db = require('../models');
             status: "CANCELADO",
             href: `http://localhost:3002/api/admin/payments/${id}`
           }];
-        return res.status(201).set('Location', `/payments/${id}`).json({id, status, links});
+        return res.status(201).set('Location', `api/admin/payments/${id}`).json({id, status, links});
       } catch (error) {
         return res.status(500).json(error.message)
       }
@@ -45,6 +45,7 @@ const db = require('../models');
 
     static async updateStatus(req, res) {
       const {id} = req.params; 
+      const {status, description} = req.body;
       const links =  [
         {     
           rel: "self",
@@ -54,11 +55,20 @@ const db = require('../models');
       ];
       try {
         const payment = await db.Payment.findOne( {where: {id: Number(id)}});
-        if (payment.status === 'CRIADO'){
+        if (payment.status === 'CRIADO' && status == 'CANCELADO'){
           await db.Payment.update(req.body, {where: {id: Number(id)}});
           const updatedPayment = await db.Payment.findOne( {where: {id: Number(id)}});
-         return res.status(200).json(updatedPayment, links)
-        } else {
+         return res.status(200).json({updatedPayment, links})
+        } 
+        else if (payment.status === 'CRIADO' && status == 'CONFIRMADO'){
+          db.sequelize.transaction(async (t) => {
+            await db.Payment.update({status}, { where: { id: Number(id) }}, {transaction: t});
+            const invoice = await db.Invoices.create({description, paymentId: id}, {transaction: t});
+            const updatedPayment = await db.Payment.findOne( { where: { id: Number(id) }});
+            return res.status(200).json({updatedPayment, links, invoice});
+          })
+        } 
+        else {
           return res.status(400).json('Não é possível realizar essa operação')
         }
       } catch (error) {
