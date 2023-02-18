@@ -18,6 +18,7 @@ const addressSchema = new mongoose.Schema(
 const orderSchema = new mongoose.Schema(
     {
         orderDate: {type: Date},
+        
         client: {
             name: {
                 type: String,
@@ -36,6 +37,7 @@ const orderSchema = new mongoose.Schema(
             type: Array,
             required: true
         },
+
         status: {type: String}
     }
 );
