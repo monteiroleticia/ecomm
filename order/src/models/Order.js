@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const addressSchema = new mongoose.Schema(
-    {
+    { 
         street: {type: String, required: true},
         number: {type: String, required: true},
         complement: {type: String},
@@ -18,14 +18,13 @@ const addressSchema = new mongoose.Schema(
 const orderSchema = new mongoose.Schema(
     {
         orderDate: {type: Date},
-        
         client: {
             name: {
                 type: String,
                 required: true
             },
             id: {
-                type: mongoose.Types.ObjectId,
+                type: String,
                 required: true
             }
         },
@@ -37,7 +36,6 @@ const orderSchema = new mongoose.Schema(
             type: Array,
             required: true
         },
-
         status: {type: String}
     }
 );

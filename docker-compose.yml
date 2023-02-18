@@ -48,6 +48,8 @@ services:
     container_name: ecomm-order
     ports:
       - 3003:3003
+    volumes: 
+      - ./order:/app/order
 
 volumes:
   db-mongo-ecomm:

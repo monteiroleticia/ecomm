@@ -14,6 +14,11 @@ class OrderController {
         })
     }
 
+    static listOrders = (req, res) => {
+        orders.find((err, orders) => {
+            res.status(200).json(orders)
+        }) 
+    }
 }
 
 export default OrderController 

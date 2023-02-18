@@ -28,7 +28,9 @@ db.orders.insertMany([
                 fullPrice: NumberDecimal('102.00'),
                 discount: 20,
             },
-        ]
+        ],
+
+        status: 'REALIZADO'
     },
      {
         orderDate: new ISODate(),
@@ -51,6 +53,8 @@ db.orders.insertMany([
                 fullPrice: NumberDecimal('1889.00'),
                 discount: 13,
             }
-        ]
+        ],
+
+        status: 'REALIZADO'
     }
 ])
