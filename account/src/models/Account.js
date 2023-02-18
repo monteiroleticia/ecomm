@@ -43,9 +43,9 @@ const accountSchema = new mongoose.Schema(
 				type: addressSchema, 
 				required: true
 			}
-			}
-    }
-)
+
+	}   
+);
 
 const accounts = mongoose.model('accounts', accountSchema);
 export default accounts;
