@@ -3,13 +3,15 @@ import orders from '../models/Order.js';
 class OrderController {
 
     static submitOrder = (req, res) => {
-        let Order = new orders(req.body);
+        const newOrder = {...req.body, status: "REALIZADO", orderDate: Date()};
+        const order = new orders(newOrder)
 
-        Order.save((err) => {
+
+        order.save((err, newOrder) => {
             if(err) {
-                res.status(500).send({message: err.message})
+                res.status(500).json('Não foi possível completar seu pedido')
             } else {
-                res.status(201).send(order.toJSON())
+                res.status(201).send(newOrder.toJSON())
             }
         })
     }
