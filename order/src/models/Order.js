@@ -37,7 +37,12 @@ const orderSchema = new mongoose.Schema(
             type: Array,
             required: true
         },
-        status: {type: String}
+        status: {
+            type: String,
+            required: true, 
+            enum: ['REALIZADO', 'PAGO', 'CANCELADO']
+        },
+        paymentId: {type: String}
     }
 );
 

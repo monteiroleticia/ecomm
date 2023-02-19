@@ -21,6 +21,19 @@ class OrderController {
             res.status(200).json(orders)
         }) 
     }
+
+    static payOrder = (req, res) => {
+        const {id} = req.params;
+        const {paymentId} = req.body;
+
+        orders.findByIdAndUpdate(id, {$set: {status: "PAGO", paymentId: paymentId}}, (err) => {
+            if(!err) {
+                res.status(200).send({message: 'Pagamento realizado'})
+              } else {
+                res.status(500).send({message: err.message})
+              }
+        })
+    }
 }
 
 export default OrderController 
