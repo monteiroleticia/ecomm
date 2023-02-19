@@ -1,7 +1,8 @@
 import mongoose from 'mongoose'
 
 const addressSchema = new mongoose.Schema(
-    {
+    {	
+		_id: false, 
         street: {type: String, required: true},
         number: {type: String, required: true},
         complement: {type: String},
