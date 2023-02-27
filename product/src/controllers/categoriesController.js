@@ -25,7 +25,7 @@ class CategoryController {
 
         categories.findById(id, (err, category) => {
             if(err) {
-                res.status(500).send({message: `${err.message} - Id da categoria não localizada.`})
+                res.status(404).send({message: `${err.message} - Id da categoria não localizada.`})
             } else {
                 res.status(200).json(category)
             }

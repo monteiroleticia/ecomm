@@ -25,7 +25,7 @@ class AccountController {
 
         accounts.findById(id, (err, Account) => {
             if(err) {
-                res.status(500).send({message: `${err.message} - Usuário não localizado.`})
+                res.status(404).send({message: `${err.message} - Usuário não localizado.`})
             } else {
                 res.status(200).json(Account)
             }

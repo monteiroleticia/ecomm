@@ -1,5 +1,21 @@
 import mongoose from 'mongoose'
 
+const addressSchema = new mongoose.Schema(
+    {	
+		_id: false, 
+        street: {type: String, required: true},
+        number: {type: String, required: true},
+        complement: {type: String},
+        zipCode: {type: String, match: /^[0-9]{8}$/},
+        city: {type: String, required: true},
+        state: {
+            type: String, 
+            required: true,
+            match: /^(\s*(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)?)$/
+        }
+    }
+);
+
 const accountSchema = new mongoose.Schema(
     {
 			name: {
@@ -25,19 +41,12 @@ const accountSchema = new mongoose.Schema(
 				match: /^[0-9]{10,13}$/
 			},
 			address: {
-				street: {type: String, required: true},
-				number: {type: String, required: true},
-				complement: {type: String},
-				zipCode: {type: String, match: /^[0-9]{8}$/},
-				city: {type: String, required: true},
-				state: {
-					type: String, 
-					required: true,
-					match: /^(\s*(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)?)$/
-				}
+				type: addressSchema, 
+				required: true
 			}
-    }
-)
+
+	}   
+);
 
 const accounts = mongoose.model('accounts', accountSchema);
 export default accounts;
