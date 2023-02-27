@@ -1,6 +1,6 @@
 FROM node:18-alpine
-WORKDIR /app-node/account
+WORKDIR /app/account
 COPY . . 
 RUN npm install
 EXPOSE 3001
-ENTRYPOINT npm start
+ENTRYPOINT npm run dev

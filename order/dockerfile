@@ -1,6 +1,6 @@
 FROM node:18-alpine
-WORKDIR /app-node/order
+WORKDIR /app/order
 COPY . . 
 RUN npm install
 EXPOSE 3003
-ENTRYPOINT npm start
+ENTRYPOINT npm run dev

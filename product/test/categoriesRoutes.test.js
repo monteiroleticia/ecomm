@@ -1,4 +1,4 @@
-import { describe, it } from '@jest/globals';
+import { describe, it} from '@jest/globals';
 import request from 'supertest';
 import app from '../src/app.js';
 
@@ -8,7 +8,7 @@ describe('GET /api/categories', ()=> {
             .get('/api/categories')
             .set('Accept', 'application/json')
             .expect('content-type', /json/)
-            .expect(200);
+            .expect(200); 
     })
 })
 
