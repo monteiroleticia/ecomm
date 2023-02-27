@@ -4,8 +4,11 @@ class CategoryController {
 
     static listCategories = (req, res) => {
         categories.find((err, categories) => {
-            res.status(200).json(categories)
-        })
+            if (err) {
+              return res.status(500).send({ message: err.message });
+            }
+            return res.status(200).json(categories);
+        });
     }
 
     static addCategory = (req, res) => {
@@ -49,7 +52,7 @@ class CategoryController {
 
         categories.findByIdAndDelete(id, (err) => {
             if(!err) {
-              res.status(200).send({message: 'Categoria removida'})
+              res.status(204).send({message: 'Categoria removida'})
             } else {
               res.status(500).send({message: err.message})
             }
