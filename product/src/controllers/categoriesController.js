@@ -2,7 +2,7 @@ import categories from '../models/Category.js';
 
 class CategoryController {
 
-    static listCategories = (req, res) => {
+    static listCategories = (_req, res) => {
         categories.find((err, categories) => {
             if (err) {
               return res.status(500).send({ message: err.message });

@@ -8,7 +8,7 @@ describe('GET /api/categories', ()=> {
             .get('/api/categories')
             .set('Accept', 'application/json')
             .expect('content-type', /json/)
-            .expect(200); 
+            .expect(200)
     })
 })
 
@@ -39,7 +39,7 @@ describe('GET /api/categories/:id', ()=> {
     })
 })
 
-describe('PUT /api/admin/categories', ()=> {
+describe('PUT /api/admin/categories/:id', ()=> {
     it('should update a category', async ()=> {
         await request(app)
             .put(`/api/admin/categories/${id}`)
@@ -72,6 +72,6 @@ describe('PATCH /api/admin/categories', ()=> {
               })
             .set('Accept', 'application/json')
             .expect('content-type', /json/)
-            .expect(200);
+            .expect(200)
     })
 })
