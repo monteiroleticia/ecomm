@@ -9,15 +9,15 @@
   "test": {
     "username": "root",
     "password": "secret",
-    "database": "ecomm-finance",
-    "host": "127.0.0.1",
+    "database": "ecomm_finance",
+    "host": "mysql",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
     "password": "secret",
-    "database": "ecomm-finance",
-    "host": "127.0.0.1",
+    "database": "ecomm_finance",
+    "host": "mysql",
     "dialect": "mysql"
   }
 }
