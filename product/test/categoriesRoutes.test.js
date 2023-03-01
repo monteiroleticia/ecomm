@@ -65,13 +65,23 @@ describe('DELETE /api/admin/categories/:id', ()=> {
 describe('PATCH /api/admin/categories', ()=> {
     it('should activate a category', async ()=> {
         await request(app)
-            .put(`/api/admin/categories/${id}`)
+            .patch(`/api/admin/categories/${id}`)
             .send({
-                nome: 'PAPELARIA',
                 status: 'ATIVA'
               })
             .set('Accept', 'application/json')
             .expect('content-type', /json/)
             .expect(200)
     })
+
+/*     it('shouldnt accept an invalid status', async ()=> {
+        await request(app)
+            .patch(`/api/admin/categories/${id}`)
+            .send({
+                status: 'BOLINHO'
+              })
+            .set('Accept', 'application/json')
+            .expect('content-type', /json/)
+            .expect(500)
+    }) */
 })

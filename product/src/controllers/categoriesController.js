@@ -38,7 +38,7 @@ class CategoryController {
     static updateCategory = (req, res) => {
         const id = req.params.id;
 
-        categories.findByIdAndUpdate(id, {$set: req.body}, (err) => {
+        categories.findByIdAndUpdate(id, {$set: req.body}, {new: true}, (err) => {
             if(!err) {
               res.status(200).send({message: 'Categoria atualizada com sucesso'})
             } else {
@@ -57,16 +57,17 @@ class CategoryController {
               res.status(500).send({message: err.message})
             }
         })
-    }
+    };
 
     static activateCategory = (req, res) => {
         const id = req.params.id;
 
-        categories.findByIdAndUpdate(id, {$set: req.body}, (err) => {
-            if(!err) {
-              res.status(200).send({message: 'Categoria ativada com sucesso'})
+        categories.findByIdAndUpdate(id, {$set: req.body}, {new: true}, (err) => {
+            if(err) {
+                res.status(500).send({message: err.message})
+        
             } else {
-              res.status(500).send({message: err.message})
+                res.status(200).send({message: 'Categoria ativada com sucesso'})
             }
         })
     }

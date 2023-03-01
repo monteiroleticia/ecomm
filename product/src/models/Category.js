@@ -8,7 +8,11 @@ const categorySchema = new mongoose.Schema(
                 minLength: 3, 
                 match: /^[A-Za-z][A-Za-z0-9 -]*$/ 
         },
-        status: {type: String}
+        status: {
+            type: String,
+            required: true,
+            enum: ['ATIVA', 'INATIVA']
+        }
     }
 );
 
