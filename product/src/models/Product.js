@@ -2,31 +2,31 @@ import mongoose from 'mongoose';
 
 const productSchema = new mongoose.Schema(
   {
-    name: { 
+    name: {
       type: String,
-      required: true, 
+      required: true,
       minLength: 3,
       match: /^[a-zA-Z][a-zA-Z0-9.,$; ]+$/,
     },
     description: { type: String },
-    slug: { 
+    slug: {
       type: String,
       required: true,
-      match: /^[a-zA-Z0-9-]+$/
+      match: /^[a-zA-Z0-9-]+$/,
     },
-    price: { 
-      type: Number,
-      min: 0
-    },
-    quantity: { 
+    price: {
       type: Number,
       min: 0,
-      max: 10000
     },
-    category: { type: Array }
-  }
+    quantity: {
+      type: Number,
+      min: 0,
+      max: 10000,
+    },
+    category: { type: Array },
+  },
 );
 
-const products = mongoose.model('products', productSchema);
+const Products = mongoose.model('products', productSchema);
 
-export default products;
+export default Products;
