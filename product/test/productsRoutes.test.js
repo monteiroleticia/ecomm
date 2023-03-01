@@ -45,7 +45,7 @@ describe('GET /api/products/:id', () => {
 
 describe('PUT /api/admin/products', () => {
   it('should update a product', async () => {
-    const response = await request(app)
+    await request(app)
       .put(`/api/admin/products/${id}`)
       .send({
         name: 'Notebook Samsung',
