@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+mongoose.set('runValidators', true);
+
 mongoose.connect('mongodb://admin:secret@mongo:27017/ecomm-order?authSource=admin');
 
 const db = mongoose.connection;
