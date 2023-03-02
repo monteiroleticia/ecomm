@@ -74,14 +74,14 @@ describe('PATCH /api/admin/categories', () => {
       .expect(200);
   });
 
-/*     it('shouldnt accept an invalid status', async ()=> {
-        await request(app)
-            .patch(`/api/admin/categories/${id}`)
-            .send({
-                status: 'BOLINHO'
-              })
-            .set('Accept', 'application/json')
-            .expect('content-type', /json/)
-            .expect(500)
-    }) */
+  it('shouldnt accept an invalid status', async () => {
+    await request(app)
+      .patch(`/api/admin/categories/${id}`)
+      .send({
+        status: 'BOLINHO',
+      })
+      .set('Accept', 'application/json')
+      .expect('content-type', /json/)
+      .expect(500);
+  });
 });
