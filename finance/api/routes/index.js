@@ -4,8 +4,8 @@ const payments = require('./paymentsRoutes.js');
 const routes = (app) => {
   app.use(
     express.json(),
-    payments
-    )
- }
+    payments,
+  );
+};
 
- module.exports = routes;
+module.exports = routes;
