@@ -51,7 +51,7 @@ class AccountController {
 
     Accounts.findByIdAndDelete(id, (err) => {
       if (!err) {
-        res.status(200).send({ message: 'Usuário removido' });
+        res.status(204).send({ message: 'Usuário removido' });
       } else {
         res.status(500).send({ message: err.message });
       }

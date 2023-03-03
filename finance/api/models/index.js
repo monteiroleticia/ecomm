@@ -5,6 +5,7 @@ const process = require('process');
 
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
+// eslint-disable-next-line global-require, import/no-dynamic-require
 const config = require(`${__dirname}/../config/config.json`)[env];
 const db = {};
 
@@ -24,6 +25,7 @@ fs
       && file.indexOf('.test.js') === -1
   ))
   .forEach((file) => {
+    // eslint-disable-next-line global-require, import/no-dynamic-require
     const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
     db[model.name] = model;
   });

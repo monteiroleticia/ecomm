@@ -1,4 +1,4 @@
-const db = require('../models');
+const db = require('../models/index.js');
 
 class PaymentsController {
   static async submitPayment(req, res) {
@@ -74,6 +74,7 @@ class PaymentsController {
     } catch (error) {
       return res.status(500).json(error.message);
     }
+    return false;
   }
 }
 
