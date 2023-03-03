@@ -74,10 +74,8 @@ class PaymentsController {
     } catch (error) {
       return res.status(500).json(error.message);
     }
-<<<<<<< HEAD
+
     return false;
-=======
->>>>>>> 8d933fb64862627713db9721cb1099eda0bdc0a3
   }
 }
 
