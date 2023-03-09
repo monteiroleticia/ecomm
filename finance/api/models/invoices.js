@@ -1,7 +1,7 @@
-'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Invoices extends Model {
     /**
@@ -12,12 +12,12 @@ module.exports = (sequelize, DataTypes) => {
 
     static associate(models) {
       Invoices.belongsTo(models.Payment, {
-        foreignKey: 'paymentId'
-      })
+        foreignKey: 'paymentId',
+      });
     }
   }
   Invoices.init({
-    description: DataTypes.JSON
+    description: DataTypes.JSON,
   }, {
     sequelize,
     modelName: 'Invoices',

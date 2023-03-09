@@ -1,7 +1,7 @@
-'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Payment extends Model {
     /**
@@ -9,40 +9,40 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
+    static associate() {
       // define association here
     }
   }
   Payment.init({
     amount: {
-      type: DataTypes.DECIMAL(10,2),
-      allowNull: false, 
-      validate: {min: 0}
-      },
+      type: DataTypes.DECIMAL(10, 2),
+      allowNull: false,
+      validate: { min: 0 },
+    },
     cardholder: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     cardNumber: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {isCreditCard: true}
+      validate: { isCreditCard: true },
     },
     expDate: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {is: /^20[2-9][0-9]-(0[1-9]|10|11|12)$/}
+      validate: { is: /^20[2-9][0-9]-(0[1-9]|10|11|12)$/ },
     },
     cvv: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {isNumeric: true, len: 3}
+      validate: { isNumeric: true, len: 3 },
     },
     status: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {isIn: [['CRIADO', 'CONFIRMADO', 'CANCELADO']]}
-    }
+      validate: { isIn: [['CRIADO', 'CONFIRMADO', 'CANCELADO']] },
+    },
   }, {
     sequelize,
     modelName: 'Payment',

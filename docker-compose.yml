@@ -30,18 +30,24 @@ services:
     container_name: ecomm-product
     ports:
       - 3000:3000 
+    volumes:
+    - ./product:/app/product
 
   account: 
     build: ./account
     container_name: ecomm-account
     ports:
       - 3001:3001 
+    volumes:
+    - ./account:/app/account
 
   finance:
     build: ./finance
     container_name: ecomm_finance
     ports:
       - 3002:3002
+    volumes:
+    - ./finance:/app/finance
 
   order:
     build: ./order
