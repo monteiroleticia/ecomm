@@ -1,9 +1,9 @@
-import Orders from '../models/Order.js';
+import Order from '../models/Order.js';
 
 class OrderController {
   static submitOrder = (req, res) => {
     const newOrder = { ...req.body, status: 'REALIZADO', orderDate: Date() };
-    const order = new Orders(newOrder);
+    const order = new Order(newOrder);
 
     order.save((err, createdOrder) => {
       if (err) {
@@ -15,7 +15,7 @@ class OrderController {
   };
 
   static listOrders = (req, res) => {
-    Orders.find((err, orders) => {
+    Order.find((err, orders) => {
       if (err) {
         return res.status(500).send({ message: err.message });
       }
@@ -27,7 +27,7 @@ class OrderController {
     const { id } = req.params;
     const { paymentId } = req.body;
 
-    Orders.findByIdAndUpdate(id, { $set: { status: 'PAGO', paymentId } }, (err) => {
+    Order.findByIdAndUpdate(id, { $set: { status: 'PAGO', paymentId } }, (err) => {
       if (!err) {
         res.status(200).send({ message: 'Pagamento realizado' });
       } else {

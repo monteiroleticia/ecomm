@@ -8,11 +8,11 @@ const routes = (app) => {
   /* app.use('/api-docs', swaggerUi.serve)
      .get('/api-docs', swaggerUi.setup(swaggerDocument)); */
 
-app.use(
+  app.use(
     express.json(),
     categories,
-    products
-    )
-}
+    products,
+  );
+};
 
 export default routes;

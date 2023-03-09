@@ -1,8 +1,8 @@
-import Products from '../models/Product.js';
+import Product from '../models/Product.js';
 
 class ProductController {
   static listProducts = (req, res) => {
-    Products.find((err, products) => {
+    Product.find((err, products) => {
       if (err) {
         return res.status(500).send({ message: err.message });
       }
@@ -11,7 +11,7 @@ class ProductController {
   };
 
   static addProduct = (req, res) => {
-    const product = new Products(req.body);
+    const product = new Product(req.body);
 
     product.save((err) => {
       if (err) {
@@ -25,11 +25,11 @@ class ProductController {
   static fetchProductById = (req, res) => {
     const { id } = req.params;
 
-    Products.findById(id, (err, Product) => {
+    Product.findById(id, (err, product) => {
       if (err) {
         res.status(404).send({ message: `${err.message} - Id do produto não localizado.` });
       } else {
-        res.status(200).json(Product);
+        res.status(200).json(product);
       }
     });
   };
@@ -37,7 +37,7 @@ class ProductController {
   static updateProduct = (req, res) => {
     const { id } = req.params;
 
-    Products.findByIdAndUpdate(id, { $set: req.body }, (err) => {
+    Product.findByIdAndUpdate(id, { $set: req.body }, (err) => {
       if (!err) {
         res.status(200).send({ message: 'Produto atualizado com sucesso' });
       } else {
@@ -49,7 +49,7 @@ class ProductController {
   static deleteProduct = (req, res) => {
     const { id } = req.params;
 
-    Products.findByIdAndDelete(id, (err) => {
+    Product.findByIdAndDelete(id, (err) => {
       if (!err) {
         res.status(204).send({ message: 'Produto removido' });
       } else {

@@ -3,4 +3,4 @@ WORKDIR /app/account
 COPY . . 
 RUN npm install
 EXPOSE 3001
-ENTRYPOINT npm run dev
+ENTRYPOINT npm start

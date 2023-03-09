@@ -3,4 +3,4 @@ WORKDIR /app/order
 COPY . . 
 EXPOSE 3003
 RUN npm install
-ENTRYPOINT npm run dev
+ENTRYPOINT npm start

@@ -1,8 +1,8 @@
-import Accounts from '../models/Account.js';
+import Account from '../models/Account.js';
 
 class AccountController {
   static listAccounts = (req, res) => {
-    Accounts.find((err, accounts) => {
+    Account.find((err, accounts) => {
       if (err) {
         return res.status(500).send({ message: err.message });
       }
@@ -11,13 +11,13 @@ class AccountController {
   };
 
   static addAccount = (req, res) => {
-    const Account = new Accounts(req.body);
+    const account = new Account(req.body);
 
-    Account.save((err) => {
+    account.save((err) => {
       if (err) {
         res.status(500).send({ message: `${err.message} - Não foi possível cadastrar usuário` });
       } else {
-        res.status(201).send(Account.toJSON());
+        res.status(201).send(account.toJSON());
       }
     });
   };
@@ -25,11 +25,11 @@ class AccountController {
   static fetchAccountById = (req, res) => {
     const { id } = req.params;
 
-    Accounts.findById(id, (err, Account) => {
+    Account.findById(id, (err, account) => {
       if (err) {
         res.status(404).send({ message: `${err.message} - Usuário não localizado.` });
       } else {
-        res.status(200).json(Account);
+        res.status(200).json(account);
       }
     });
   };
@@ -37,7 +37,7 @@ class AccountController {
   static updateAccount = (req, res) => {
     const { id } = req.params;
 
-    Accounts.findByIdAndUpdate(id, { $set: req.body }, (err) => {
+    Account.findByIdAndUpdate(id, { $set: req.body }, (err) => {
       if (!err) {
         res.status(200).send({ message: 'Usuário atualizado com sucesso' });
       } else {
@@ -49,7 +49,7 @@ class AccountController {
   static deleteAccount = (req, res) => {
     const { id } = req.params;
 
-    Accounts.findByIdAndDelete(id, (err) => {
+    Account.findByIdAndDelete(id, (err) => {
       if (!err) {
         res.status(204).send({ message: 'Usuário removido' });
       } else {
