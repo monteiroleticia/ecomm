@@ -37,11 +37,11 @@ class CategoryController {
   static updateCategory = (req, res) => {
     const { id } = req.params;
 
-    Category.findByIdAndUpdate(id, { $set: req.body }, { new: true }, (err) => {
-      if (!err) {
-        res.status(200).send({ message: 'Categoria atualizada com sucesso' });
-      } else {
+    Category.findByIdAndUpdate(id, { $set: req.body }, (err) => {
+      if (err) {
         res.status(500).send({ message: err.message });
+      } else {
+        res.status(200).send({ message: 'Categoria atualizada com sucesso' });
       }
     });
   };
@@ -50,10 +50,10 @@ class CategoryController {
     const { id } = req.params;
 
     Category.findByIdAndDelete(id, (err) => {
-      if (!err) {
-        res.status(204).send({ message: 'Categoria removida' });
-      } else {
+      if (err) {
         res.status(500).send({ message: err.message });
+      } else {
+        res.status(204).send({ message: 'Categoria removida' });
       }
     });
   };
@@ -61,7 +61,7 @@ class CategoryController {
   static activateCategory = (req, res) => {
     const { id } = req.params;
 
-    Category.findByIdAndUpdate(id, { $set: req.body }, { new: true }, (err) => {
+    Category.findByIdAndUpdate(id, { $set: req.body }, (err) => {
       if (err) {
         res.status(500).send({ message: err.message });
       } else {
