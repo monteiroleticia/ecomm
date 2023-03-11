@@ -4,13 +4,13 @@ import AccountController from '../controllers/accountsController.js';
 
 const router = express.Router();
 const authenticateLocal = passport.authenticate('local', { session: false });
-
+const authenticateBearer = passport.authenticate('bearer', { session: false });
 router
-  .get('/api/admin/accounts', AccountController.listAccounts)
-  .post('/api/admin/accounts', AccountController.addAccount)
+  .get('/api/accounts', authenticateBearer, AccountController.listAccounts)
+  .post('/api/accounts', AccountController.addAccount)
   .get('/api/accounts/:id', AccountController.fetchAccountById)
-  .put('/api/admin/accounts/:id', AccountController.updateAccount)
-  .delete('/api/admin/accounts/:id', AccountController.deleteAccount)
+  .put('/api/accounts/:id', authenticateBearer, AccountController.updateAccount)
+  .delete('/api/accounts/:id', authenticateBearer, AccountController.deleteAccount)
   .post('/api/accounts/login', authenticateLocal, AccountController.accountLogin);
 
 export default router;

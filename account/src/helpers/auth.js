@@ -1,7 +1,9 @@
 import passport from 'passport';
 import bcrypt from 'bcryptjs';
 import { Strategy as LocalStrategy } from 'passport-local';
+import { Strategy as BearerStrategy } from 'passport-http-bearer';
 import Account from '../models/Account.js';
+import jwt from 'jsonwebtoken';
 
 const verifyPassword = (inputPassword, dbPassword) => bcrypt.compareSync(inputPassword, dbPassword);
 
@@ -21,4 +23,18 @@ passport.use(new LocalStrategy({
   });
 }));
 
-export default LocalStrategy;
+passport.use(
+  new BearerStrategy(
+    async (token, done) => {
+      try {
+        const payload = jwt.verify(token, process.env.JWT_KEY);
+        const account = await Account.findById(payload._id);
+        done(null, account, { token });
+      } catch (erro) {
+        done(erro);
+      }
+    },
+  ),
+);
+
+export { LocalStrategy, BearerStrategy };
