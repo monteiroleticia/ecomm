@@ -1,5 +1,6 @@
 import Account from '../models/Account.js';
 import hash from '../helpers/hash.js';
+import createToken from '../helpers/token.js';
 
 class AccountController {
   static listAccounts = (req, res) => {
@@ -58,6 +59,11 @@ class AccountController {
         res.status(204).send({ message: 'Usuário removido' });
       }
     });
+  };
+
+  static accountLogin = (req, res) => {
+    const token = createToken(req.user);
+    res.status(204).set('Authorization', token).send();
   };
 }
 
