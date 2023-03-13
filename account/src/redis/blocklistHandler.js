@@ -23,4 +23,4 @@ const blocklistedCheck = async (token) => {
   return result === 1;
 };
 
-export default { addToBlocklist, blocklistedCheck };
+export { addToBlocklist, blocklistedCheck };

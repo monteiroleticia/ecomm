@@ -4,7 +4,7 @@ import { Strategy as LocalStrategy } from 'passport-local';
 import { Strategy as BearerStrategy } from 'passport-http-bearer';
 import jwt from 'jsonwebtoken';
 import Account from '../models/Account.js';
-import blocklistedCheck from '../redis/blocklistHandler.js';
+import { blocklistedCheck } from '../redis/blocklistHandler.js';
 
 const verifyPassword = (inputPassword, dbPassword) => bcrypt.compareSync(inputPassword, dbPassword);
 
@@ -25,6 +25,11 @@ passport.use(new LocalStrategy({
 }));
 
 passport.use(new BearerStrategy((token, done) => {
+  blocklistedCheck(token)
+    .then((result) => {
+      if (result) return done(new jwt.JsonWebTokenError('Expired Token'));
+      return null;
+    });
   const payload = jwt.verify(token, process.env.JWT_KEY);
   Account.findById(payload.id, (err, account) => {
     if (err) { return done(err); }
