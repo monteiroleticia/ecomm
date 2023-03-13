@@ -16,7 +16,7 @@ let id;
 describe('POST /api/accounts', () => {
   it('should add a new account', async () => {
     const response = await request(app)
-      .post('/api/admin/accounts')
+      .post('/api/accounts')
       .send({
         name: 'Maria Santos',
         email: 'maria@email.com',

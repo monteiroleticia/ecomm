@@ -3,10 +3,10 @@ const request = require('supertest');
 const app = require('../src/app.js');
 
 let id;
-describe('POST /api/admin/payments', () => {
+describe('POST /api/payments', () => {
   it('should submit a payment', async () => {
     const response = await request(app)
-      .post('/api/admin/payments')
+      .post('/api/payments')
       .send({
         amount: 6300,
         cardholder: 'Aparecida Ribeiro',
@@ -21,20 +21,20 @@ describe('POST /api/admin/payments', () => {
   });
 });
 
-describe('GET /api/admin/payments/:id', () => {
+describe('GET /api/payments/:id', () => {
   it('should return a payment found by its id', async () => {
     await request(app)
-      .get(`/api/admin/payments/${id}`)
+      .get(`/api/payments/${id}`)
       .set('Accept', 'application/json')
       .expect('content-type', /json/)
       .expect(200);
   });
 });
 
-describe('PATCH /api/admin/payments/:id', () => {
+describe('PATCH /api/payments/:id', () => {
   it('should update a payment status', async () => {
     await request(app)
-      .patch(`/api/admin/payments/${id}`)
+      .patch(`/api/payments/${id}`)
       .send({ status: 'CANCELADO' })
       .set('Accept', 'application/json')
       .expect('content-type', /json/)
@@ -43,7 +43,7 @@ describe('PATCH /api/admin/payments/:id', () => {
 
   it('shouldnt confirm a cancelled payment', async () => {
     await request(app)
-      .patch(`/api/admin/payments/${id}`)
+      .patch(`/api/payments/${id}`)
       .send({ status: 'CONFIRMADO' })
       .set('Accept', 'application/json')
       .expect('content-type', /json/)

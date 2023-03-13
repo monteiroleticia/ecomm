@@ -3,6 +3,7 @@ import passport from 'passport';
 import AccountController from '../controllers/accountsController.js';
 
 const router = express.Router();
+
 const authenticateLocal = passport.authenticate('local', { session: false });
 const authenticateBearer = passport.authenticate('bearer', { session: false });
 
