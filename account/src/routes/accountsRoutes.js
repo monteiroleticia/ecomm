@@ -13,6 +13,7 @@ router
   .get('/api/accounts/:id', AccountController.fetchAccountById)
   .put('/api/accounts/:id', authenticateBearer, AccountController.updateAccount)
   .delete('/api/accounts/:id', authenticateBearer, AccountController.deleteAccount)
-  .post('/api/accounts/login', authenticateLocal, AccountController.accountLogin);
+  .post('/api/accounts/login', authenticateLocal, AccountController.accountLogin)
+  .post('/api/accounts/logout', authenticateBearer, AccountController.accountLogout);
 
 export default router;

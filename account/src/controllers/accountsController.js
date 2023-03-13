@@ -1,6 +1,7 @@
 import Account from '../models/Account.js';
 import hash from '../helpers/hash.js';
 import createToken from '../helpers/token.js';
+import addToBlockList from '../redis/blocklistHandler.js';
 
 class AccountController {
   static listAccounts = (req, res) => {
@@ -64,6 +65,16 @@ class AccountController {
   static accountLogin = (req, res) => {
     const token = createToken(req.user);
     res.status(204).set('Authorization', token).send();
+  };
+
+  static accountLogout = async (req, res) => {
+    try {
+      const { token } = req;
+      await addToBlockList(token);
+      res.status(204).send();
+    } catch (error) {
+      res.status(500).send({ message: error.message });
+    }
   };
 }
 
