@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 
 const createToken = (user) => {
-  const payload = {id: user._id };
+  const payload = { id: user._id };
   const key = process.env.JWT_KEY;
   const token = jwt.sign(
     payload,

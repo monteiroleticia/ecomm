@@ -1,6 +1,6 @@
 const { describe, it } = require('@jest/globals');
 const request = require('supertest');
-const app = require('../api/app.js');
+const app = require('../src/app.js');
 
 let id;
 describe('POST /api/admin/payments', () => {
