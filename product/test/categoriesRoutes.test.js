@@ -13,10 +13,10 @@ describe('GET /api/categories', () => {
 });
 
 let id;
-describe('POST /api/admin/categories', () => {
+describe('POST /api/categories', () => {
   it('should add a new category', async () => {
     const response = await request(app)
-      .post('/api/admin/categories')
+      .post('/api/categories')
       .send({
         nome: 'PAPELARIA',
         status: 'ATIVA',
@@ -39,10 +39,10 @@ describe('GET /api/categories/:id', () => {
   });
 });
 
-describe('PUT /api/admin/categories/:id', () => {
+describe('PUT /api/categories/:id', () => {
   it('should update a category', async () => {
     await request(app)
-      .put(`/api/admin/categories/${id}`)
+      .put(`/api/categories/${id}`)
       .send({
         nome: 'PAPELARIA',
         status: 'INATIVA',
@@ -53,19 +53,19 @@ describe('PUT /api/admin/categories/:id', () => {
   });
 });
 
-describe('DELETE /api/admin/categories/:id', () => {
+describe('DELETE /api/categories/:id', () => {
   it('should delete a category', async () => {
     await request(app)
-      .delete(`/api/admin/categories/${id}`)
+      .delete(`/api/categories/${id}`)
       .set('Accept', 'application/json')
       .expect(204);
   });
 });
 
-describe('PATCH /api/admin/categories', () => {
+describe('PATCH /api/categories', () => {
   it('should activate a category', async () => {
     await request(app)
-      .patch(`/api/admin/categories/${id}`)
+      .patch(`/api/categories/${id}`)
       .send({
         status: 'ATIVA',
       })
@@ -76,7 +76,7 @@ describe('PATCH /api/admin/categories', () => {
 
   it('shouldnt accept an invalid status', async () => {
     await request(app)
-      .patch(`/api/admin/categories/${id}`)
+      .patch(`/api/categories/${id}`)
       .send({
         status: 'BOLINHO',
       })

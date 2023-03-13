@@ -13,10 +13,10 @@ describe('GET /api/products', () => {
 });
 
 let id;
-describe('POST /api/admin/products', () => {
+describe('POST /api/products', () => {
   it('should add a new product', async () => {
     const response = await request(app)
-      .post('/api/admin/products')
+      .post('/api/products')
       .send({
         name: 'Notebook Samsung',
         description: 'Samsung Book Core i5-1135G7, 8G, 256GB SSD, Iris Xe, 15.6" FHD, W11 Cinza',
@@ -43,10 +43,10 @@ describe('GET /api/products/:id', () => {
   });
 });
 
-describe('PUT /api/admin/products', () => {
+describe('PUT /api/products', () => {
   it('should update a product', async () => {
     await request(app)
-      .put(`/api/admin/products/${id}`)
+      .put(`/api/products/${id}`)
       .send({
         name: 'Notebook Samsung',
         description: 'Samsung Book Core i5-1135G7, 8G, 256GB SSD, Iris Xe, 15.6" FHD, W11 Cinza',
@@ -64,7 +64,7 @@ describe('PUT /api/admin/products', () => {
 describe('DELETE /api/products/:id', () => {
   it('should delete a product', async () => {
     await request(app)
-      .delete(`/api/admin/products/${id}`)
+      .delete(`/api/products/${id}`)
       .set('Accept', 'application/json')
       .expect(204);
   });
