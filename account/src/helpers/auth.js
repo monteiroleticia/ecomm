@@ -14,8 +14,12 @@ passport.use(new LocalStrategy({
   session: false,
 }, (email, password, done) => {
   Account.findOne({ email }, (err, account) => {
-    if (err) { return done(err); }
-    if (!account) { return done(null, false); }
+    if (err) {
+      return done(err);
+    }
+    if (!account) {
+      return done(null, false);
+    }
     if (!verifyPassword(password, account.password)) {
       return done(null, false);
     }
@@ -32,8 +36,12 @@ passport.use(new BearerStrategy((token, done) => {
     });
   const payload = jwt.verify(token, process.env.JWT_KEY);
   Account.findById(payload.id, (err, account) => {
-    if (err) { return done(err); }
-    if (!account) { return done(null, false); }
+    if (err) {
+      return done(err);
+    }
+    if (!account) {
+      return done(null, false);
+    }
     return done(null, account, { token });
   });
 }));
