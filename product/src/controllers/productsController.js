@@ -38,10 +38,10 @@ class ProductController {
     const { id } = req.params;
 
     Product.findByIdAndUpdate(id, { $set: req.body }, (err) => {
-      if (!err) {
-        res.status(200).send({ message: 'Produto atualizado com sucesso' });
-      } else {
+      if (err) {
         res.status(500).send({ message: err.message });
+      } else {
+        res.status(200).send({ message: 'Produto atualizado com sucesso' });
       }
     });
   };
@@ -50,10 +50,10 @@ class ProductController {
     const { id } = req.params;
 
     Product.findByIdAndDelete(id, (err) => {
-      if (!err) {
-        res.status(204).send({ message: 'Produto removido' });
-      } else {
+      if (err) {
         res.status(500).send({ message: err.message });
+      } else {
+        res.status(204).send({ message: 'Produto removido' });
       }
     });
   };

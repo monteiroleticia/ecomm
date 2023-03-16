@@ -24,6 +24,15 @@ services:
     environment:
       MYSQL_DATABASE: 'ecomm_finance'
       MYSQL_ROOT_PASSWORD: secret
+  
+  redis:
+    image: redis
+    container_name: redis-ecomm
+    volumes:
+    - redis-data:/data
+    restart: always
+    ports:
+    - 6379:6379
 
   product:
     build: ./product
@@ -60,4 +69,5 @@ services:
 volumes:
   db-mongo-ecomm:
   db-mysql-ecomm:
+  redis-data:
   

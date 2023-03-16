@@ -1,4 +1,7 @@
 import Account from '../models/Account.js';
+import hash from '../helpers/hash.js';
+import createToken from '../helpers/token.js';
+import { addToBlocklist } from '../redis/blocklistHandler.js';
 
 class AccountController {
   static listAccounts = (req, res) => {
@@ -11,7 +14,8 @@ class AccountController {
   };
 
   static addAccount = (req, res) => {
-    const account = new Account(req.body);
+    const hashedPassword = hash(req.body.password);
+    const account = new Account({ ...req.body, password: hashedPassword });
 
     account.save((err) => {
       if (err) {
@@ -38,10 +42,10 @@ class AccountController {
     const { id } = req.params;
 
     Account.findByIdAndUpdate(id, { $set: req.body }, (err) => {
-      if (!err) {
-        res.status(200).send({ message: 'Usuário atualizado com sucesso' });
-      } else {
+      if (err) {
         res.status(500).send({ message: err.message });
+      } else {
+        res.status(200).send({ message: 'Usuário atualizado com sucesso' });
       }
     });
   };
@@ -50,12 +54,27 @@ class AccountController {
     const { id } = req.params;
 
     Account.findByIdAndDelete(id, (err) => {
-      if (!err) {
-        res.status(204).send({ message: 'Usuário removido' });
-      } else {
+      if (err) {
         res.status(500).send({ message: err.message });
+      } else {
+        res.status(204).send({ message: 'Usuário removido' });
       }
     });
+  };
+
+  static accountLogin = (req, res) => {
+    const token = createToken(req.user);
+    res.status(204).set('Authorization', token).send();
+  };
+
+  static accountLogout = async (req, res) => {
+    try {
+      const { token } = req.authInfo;
+      await addToBlocklist(token);
+      res.status(204).send();
+    } catch (err) {
+      res.status(500).send({ message: 'message' });
+    }
   };
 }
 

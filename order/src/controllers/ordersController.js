@@ -28,10 +28,10 @@ class OrderController {
     const { paymentId } = req.body;
 
     Order.findByIdAndUpdate(id, { $set: { status: 'PAGO', paymentId } }, (err) => {
-      if (!err) {
-        res.status(200).send({ message: 'Pagamento realizado' });
-      } else {
+      if (err) {
         res.status(500).send({ message: err.message });
+      } else {
+        res.status(200).send({ message: 'Pagamento realizado' });
       }
     });
   };

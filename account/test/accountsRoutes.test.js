@@ -2,10 +2,10 @@ import { describe, it } from '@jest/globals';
 import request from 'supertest';
 import app from '../src/app.js';
 
-describe('GET /api/admin/accounts', () => {
+describe('GET /api/accounts', () => {
   it('should list all accounts', async () => {
     await request(app)
-      .get('/api/admin/accounts')
+      .get('/api/accounts')
       .set('Accept', 'application/json')
       .expect('content-type', /json/)
       .expect(200);
@@ -13,10 +13,10 @@ describe('GET /api/admin/accounts', () => {
 });
 
 let id;
-describe('POST /api/admin/accounts', () => {
+describe('POST /api/accounts', () => {
   it('should add a new account', async () => {
     const response = await request(app)
-      .post('/api/admin/accounts')
+      .post('/api/accounts')
       .send({
         name: 'Maria Santos',
         email: 'maria@email.com',
@@ -49,10 +49,10 @@ describe('GET /api/accounts/:id', () => {
   });
 });
 
-describe('PUT /api/admin/accounts/:id', () => {
+describe('PUT /api/accounts/:id', () => {
   it('should update a account', async () => {
     await request(app)
-      .put(`/api/admin/accounts/${id}`)
+      .put(`/api/accounts/${id}`)
       .send({
         name: 'Maria dos Santos',
       })
@@ -62,10 +62,10 @@ describe('PUT /api/admin/accounts/:id', () => {
   });
 });
 
-describe('DELETE /api/admin/accounts/:id', () => {
+describe('DELETE /api/accounts/:id', () => {
   it('should delete a account', async () => {
     await request(app)
-      .delete(`/api/admin/accounts/${id}`)
+      .delete(`/api/accounts/${id}`)
       .set('Accept', 'application/json')
       .expect(204);
   });
