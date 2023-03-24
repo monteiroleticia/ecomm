@@ -21,6 +21,7 @@ Projeto de Ecommerce criando durante o programa LevelUp da Alura
 
 <details>
 <summary>Read More</summary>
+
 1. Codebase 
 
     Git is used for version control, and this GitHub repository is maintains the codebase. 
