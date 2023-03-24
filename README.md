@@ -29,6 +29,6 @@ Projeto de Ecommerce criando durante o programa LevelUp da Alura
 | Process Aggregator | Yes |
 | Edge Services | Not Yet.|
 | Single DB vs Multiple DBs | Multiple DBs |
-| Asynchronous Events‌ | Yes|
+| Asynchronous Events‌ | Not yet.|
 | Log Aggregation | Not yet.|
 | Metrics Aggregation | Not Yet.|
