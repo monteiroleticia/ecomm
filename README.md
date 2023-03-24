@@ -84,3 +84,31 @@ Projeto de Ecommerce criando durante o programa LevelUp da Alura
 | Asynchronous Events‌ | Not yet.|
 | Log Aggregation | Not yet.|
 | Metrics Aggregation | Not Yet.|
+
+## microservices aspects 
+
+**Standardized Stack**
+
+All services use Node.js and Express, and are built as docker cointainers. The Finance service use MySQL with Sequelize ORM, while all others use MongoDB with Mongoose. While there is an standards between the stacks all services are built independently. 
+
+**Service Discovery**
+
+Docker can be used to connect services. 
+
+**Security**
+
+Crypotgraphy is used to store some sensitive data on the database, like passwords. It could be applied to more data like order store or payment details. Network access is managed with authentication and tokens, using Passport. 
+
+**Deploy and Build Technologies** 
+
+ESLint and Jest are used to test while building. However, there isn't any technology for deploy implemented yet. GitHub Actions could be used for that. 
+
+**Handling Bugs on Synchronous Application**
+
+There isn't any immplemented yet. 
+
+**Asynchronous Communication**
+
+While some functions do use assynchronous communication, this doesn't apply to the services communication. It would be interesting to apply it to the Finance service, since the payment could take a while to be processed and then the app could be keep running while this is waiting on background.  
+
+
